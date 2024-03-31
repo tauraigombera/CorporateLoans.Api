@@ -1,8 +1,15 @@
+using EmployeeLoans.Api;
+using EmployeeLoans.Api.Reposities;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+// Registering the Loan repository for dependency injection
+builder.Services.AddScoped<ILoanRepository, InMemoryLoanRepository>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
