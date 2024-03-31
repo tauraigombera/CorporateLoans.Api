@@ -1,10 +1,10 @@
-﻿using System.Runtime.CompilerServices;
-using EmployeeLoans.Api.Models;
+﻿using EmployeeLoans.Api.Models;
 
 namespace EmployeeLoans.Api.Reposities;
 
 public class InMemoryLoanRepository
 {
+    //Create a list of loans
     private readonly List<Loan> loans =
     [
         new Loan 
@@ -33,11 +33,13 @@ public class InMemoryLoanRepository
         }
     ];
 
+    //Get loans
     public IEnumerable<Loan> GetLoans()
     {
         return loans;
     }
 
+    //Get a loan by id
     public Loan GetLoan(int id)
     {
         return loans.SingleOrDefault(loan => loan.Id == id)!;
