@@ -2,7 +2,7 @@
 
 namespace EmployeeLoans.Api.Reposities;
 
-public class InMemoryLoanRepository
+public class InMemoryLoanRepository : ILoanRepository
 {
     //Create a list of loans
     private readonly List<Loan> loans =
