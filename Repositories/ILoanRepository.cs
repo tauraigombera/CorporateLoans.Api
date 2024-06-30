@@ -6,4 +6,5 @@ public interface ILoanRepository
 {
     IEnumerable<Loan> GetLoans();
     Loan GetLoan(int id);
+    void CreateLoan(Loan loan);
 }
