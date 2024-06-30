@@ -1,5 +1,6 @@
 ﻿using EmployeeLoans.Api.Dtos;
 using EmployeeLoans.Api.Extensions;
+using EmployeeLoans.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeLoans.Api.Controllers;
@@ -33,6 +34,21 @@ public class LoansController : ControllerBase
             return NotFound();
         }
         return Ok(loan);
+    }
+
+    //POST /loans
+    [HttpPost]
+    public ActionResult<LoanDto> CreateLoans(CreateLoanDto createLoanDto)
+    {
+        Loan loan = new(){
+            Id = new int(),
+            LoanAmount = createLoanDto.LoanAmount,
+            LoanPurpose = createLoanDto.LoanPurpose,
+            ApplicationDate = DateTime.UtcNow
+        };
+
+        _loanRepository.CreateLoan(loan);
+        return CreatedAtAction(nameof(GetLoan), new{id = loan.Id}, loan.AsDto());
     }
 
 }
