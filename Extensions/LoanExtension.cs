@@ -9,6 +9,7 @@ public static class LoanExtension
     {
         return new LoanDto
         (
+            loan.Id,
             loan.LoanAmount,
             loan.LoanPurpose,
             loan.ApplicationDate,

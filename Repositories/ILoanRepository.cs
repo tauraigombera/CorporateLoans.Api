@@ -1,6 +1,6 @@
 ﻿using EmployeeLoans.Api.Models;
 
-namespace EmployeeLoans.Api;
+namespace EmployeeLoans.Api.Repositories;
 
 public interface ILoanRepository
 {

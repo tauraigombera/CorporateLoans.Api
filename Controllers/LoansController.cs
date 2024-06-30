@@ -1,6 +1,7 @@
 ﻿using EmployeeLoans.Api.Dtos;
 using EmployeeLoans.Api.Extensions;
 using EmployeeLoans.Api.Models;
+using EmployeeLoans.Api.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeLoans.Api.Controllers;
@@ -28,12 +29,12 @@ public class LoansController : ControllerBase
     [HttpGet("{id}")]
     public ActionResult<LoanDto> GetLoan(Guid id)
     {
-        var loan = _loanRepository.GetLoan(id).AsDto();
+        var loan = _loanRepository.GetLoan(id);
 
         if (loan is null){
             return NotFound();
         }
-        return Ok(loan);
+        return loan.AsDto();
     }
 
     //POST /loans

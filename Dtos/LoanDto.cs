@@ -2,6 +2,7 @@
 
 public record LoanDto
 (
+    Guid Id,
     decimal LoanAmount,
     string LoanPurpose,
     DateTime ApplicationDate,
