@@ -5,6 +5,6 @@ namespace EmployeeLoans.Api;
 public interface ILoanRepository
 {
     IEnumerable<Loan> GetLoans();
-    Loan GetLoan(int id);
+    Loan GetLoan(Guid id);
     void CreateLoan(Loan loan);
 }

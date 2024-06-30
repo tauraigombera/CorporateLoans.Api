@@ -2,7 +2,7 @@
 
 public class Loan
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public decimal LoanAmount { get; set; }
     public required string LoanPurpose { get; set; }
     public DateTime ApplicationDate { get; set; }

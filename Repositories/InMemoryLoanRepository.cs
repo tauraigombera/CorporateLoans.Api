@@ -1,6 +1,6 @@
 ﻿using EmployeeLoans.Api.Models;
 
-namespace EmployeeLoans.Api.Reposities;
+namespace EmployeeLoans.Api.Repositories;
 
 public class InMemoryLoanRepository : ILoanRepository
 {
@@ -9,7 +9,7 @@ public class InMemoryLoanRepository : ILoanRepository
     [
         new Loan 
         {
-            Id = 1,
+            Id = Guid.NewGuid(),
             LoanAmount = 1000000,
             LoanPurpose = "Buying a car",
             ApplicationDate = DateTime.Now,
@@ -17,7 +17,7 @@ public class InMemoryLoanRepository : ILoanRepository
         },
         new Loan 
         {
-            Id = 2,
+            Id = Guid.NewGuid(),
             LoanAmount = 2000000,
             LoanPurpose = "Buying a house",
             ApplicationDate = DateTime.Now,
@@ -25,7 +25,7 @@ public class InMemoryLoanRepository : ILoanRepository
         },
         new Loan 
         {
-            Id = 3,
+            Id = Guid.NewGuid(),
             LoanAmount = 3000000,
             LoanPurpose = "Buying furniture",
             ApplicationDate = DateTime.Now,
@@ -40,7 +40,7 @@ public class InMemoryLoanRepository : ILoanRepository
     }
 
     //Get a loan by id
-    public Loan GetLoan(int id)
+    public Loan GetLoan(Guid id)
     {
         return loans.SingleOrDefault(loan => loan.Id == id)!;
     }

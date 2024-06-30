@@ -1,5 +1,5 @@
 using EmployeeLoans.Api;
-using EmployeeLoans.Api.Reposities;
+using EmployeeLoans.Api.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 

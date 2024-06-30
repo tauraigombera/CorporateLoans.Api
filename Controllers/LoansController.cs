@@ -26,7 +26,7 @@ public class LoansController : ControllerBase
 
     //GET /loans/{id}
     [HttpGet("{id}")]
-    public ActionResult<LoanDto> GetLoan(int id)
+    public ActionResult<LoanDto> GetLoan(Guid id)
     {
         var loan = _loanRepository.GetLoan(id).AsDto();
 
@@ -41,10 +41,11 @@ public class LoansController : ControllerBase
     public ActionResult<LoanDto> CreateLoans(CreateLoanDto createLoanDto)
     {
         Loan loan = new(){
-            Id = new int(),
+            Id = Guid.NewGuid(),
             LoanAmount = createLoanDto.LoanAmount,
             LoanPurpose = createLoanDto.LoanPurpose,
-            ApplicationDate = DateTime.UtcNow
+            MonthlyDeduction = createLoanDto.MonthlyDeduction,
+            ApplicationDate = DateTime.Now
         };
 
         _loanRepository.CreateLoan(loan);
