@@ -44,4 +44,9 @@ public class InMemoryLoanRepository : ILoanRepository
     {
         return loans.SingleOrDefault(loan => loan.Id == id)!;
     }
+
+    public void CreateLoan(Loan loan)
+    {
+        loans.Add(loan);
+    }
 }
