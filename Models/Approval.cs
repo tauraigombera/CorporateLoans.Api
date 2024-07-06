@@ -2,9 +2,8 @@
 
 public class Approval
 {
-    public int Id { get; set; }
-    public decimal LoanAmount { get; set; }
-    public required string LoanPurpose { get; set; }
-    public decimal MonthlyDeduction { get; set; }
-    public DateTime ApplicationDate { get; set; }
+    public Guid Id { get; set; }
+    public required string ApprovalStaus { get; set; }
+    public required string Comment   { get; set; }
+    public DateTime ApprovalDate { get; set; }
 }
