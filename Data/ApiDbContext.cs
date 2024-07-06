@@ -13,7 +13,11 @@ public class ApiDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Loan>()
-            .Property(d => d.LoanAmount)
+            .Property(l => l.LoanAmount)
+            .HasColumnType("decimal(18,2)"); // Adjust precision and scale as per your requirements
+
+            modelBuilder.Entity<Loan>()
+            .Property(l => l.MonthlyDeductionAmount)
             .HasColumnType("decimal(18,2)"); // Adjust precision and scale as per your requirements
     }
 }

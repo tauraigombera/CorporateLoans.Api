@@ -13,5 +13,5 @@ public class Loan
     [Required]
     public DateTime ApplicationDate { get; set; }
     [Required]
-    public decimal MonthlyDeduction { get; set; }
+    public decimal MonthlyDeductionAmount { get; set; }
 }
