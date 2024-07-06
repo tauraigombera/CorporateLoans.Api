@@ -13,7 +13,7 @@ public class InMemoryLoanRepository : ILoanRepository
             LoanAmount = 1000000,
             LoanPurpose = "Buying a car",
             ApplicationDate = DateTime.Now,
-            MonthlyDeduction = 100000
+            MonthlyDeductionAmount = 100000
         },
         new Loan 
         {
@@ -21,7 +21,7 @@ public class InMemoryLoanRepository : ILoanRepository
             LoanAmount = 2000000,
             LoanPurpose = "Buying a house",
             ApplicationDate = DateTime.Now,
-            MonthlyDeduction = 200000
+            MonthlyDeductionAmount = 200000
         },
         new Loan 
         {
@@ -29,7 +29,7 @@ public class InMemoryLoanRepository : ILoanRepository
             LoanAmount = 3000000,
             LoanPurpose = "Buying furniture",
             ApplicationDate = DateTime.Now,
-            MonthlyDeduction = 300000
+            MonthlyDeductionAmount = 300000
         }
     ];
 
