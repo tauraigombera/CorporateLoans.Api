@@ -1,4 +1,5 @@
 using EmployeeLoans.Api;
+using EmployeeLoans.Api.Data;
 using EmployeeLoans.Api.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +17,7 @@ builder.Services.AddSwaggerGen();
 
 //configure SQL server connection
 var connectionString = builder.Configuration["ConnectionStrings:EmployeeLoansContext"];
-//builder.Services.AddSqlServer<ApiDbContext>(connectionString);
+builder.Services.AddSqlServer<ApiDbContext>(connectionString);
 
 var app = builder.Build();
 
