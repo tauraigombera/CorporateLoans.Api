@@ -21,6 +21,9 @@ builder.Services.AddSqlServer<ApiDbContext>(connectionString);
 
 var app = builder.Build();
 
+// Initializing the database
+app.Services.InitializeDbAsync();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
