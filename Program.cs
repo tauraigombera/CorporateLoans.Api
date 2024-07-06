@@ -14,6 +14,10 @@ builder.Services.AddSingleton<ILoanRepository, InMemoryLoanRepository>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//configure SQL server connection
+var connectionString = builder.Configuration["ConnectionStrings:EmployeeLoansContext"];
+//builder.Services.AddSqlServer<ApiDbContext>(connectionString);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
