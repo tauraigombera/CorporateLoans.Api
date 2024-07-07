@@ -30,7 +30,7 @@ public class LoansRepository : ILoanRepository
     }
 
     public void UpdateLoan(Loan loan){
-        dbContext.Loans.Update(loan);
+        dbContext.Update(loan);
         dbContext.SaveChanges();
     }
 

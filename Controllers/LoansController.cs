@@ -53,4 +53,36 @@ public class LoansController : ControllerBase
         return CreatedAtAction(nameof(GetLoan), new{id = loan.Id}, loan.AsDto());
     }
 
+    //UPDATE /loans
+    [HttpPut]
+    public ActionResult<LoanDto> UpdateLoan(Guid id, UpdateLoanDto updateLoanDto)
+    {
+        Loan? existingLoan = _loanRepository.GetLoan(id);
+
+        if (existingLoan is not null)
+        {
+            existingLoan.LoanAmount = updateLoanDto.LoanAmount;
+            existingLoan.LoanPurpose = updateLoanDto.LoanPurpose;
+            existingLoan.LoanPurpose = updateLoanDto.LoanPurpose;
+
+            _loanRepository.UpdateLoan(existingLoan);
+
+            return NoContent();
+        }
+        
+        return NoContent();
+    }
+
+    //DELETE /organization
+    public ActionResult<LoanDto> DeleteLoan(Guid id)
+    {
+        Loan? loan = _loanRepository.GetLoan(id);
+        
+        if (loan is not null)
+        {
+            _loanRepository.DeleteLoan(id);
+        } 
+
+        return NoContent();
+    }
 }
