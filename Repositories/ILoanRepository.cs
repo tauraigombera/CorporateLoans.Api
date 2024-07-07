@@ -10,7 +10,7 @@ public interface ILoanRepository
 
     void CreateLoan(Loan loan);
 
-    void UpdateLoan(Loan updatedLoan);
+    void UpdateLoan(Loan loan);
 
     void DeleteLoan(Guid id);
 }

@@ -29,8 +29,8 @@ public class LoansRepository : ILoanRepository
         dbContext.SaveChanges();
     }
 
-    public void UpdateLoan(Loan updatedLoan){
-        dbContext.Loans.Update(updatedLoan);
+    public void UpdateLoan(Loan loan){
+        dbContext.Loans.Update(loan);
         dbContext.SaveChanges();
     }
 
