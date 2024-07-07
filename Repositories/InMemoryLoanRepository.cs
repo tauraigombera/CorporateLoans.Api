@@ -52,7 +52,7 @@ public class InMemoryLoanRepository : ILoanRepository
 
     public void UpdateLoan(Loan updatedLoan)
     {
-        var index = loans.FindIndex(organization => organization.Id == updatedLoan.Id);
+        var index = loans.FindIndex(loan => loan.Id == updatedLoan.Id);
         loans[index] = updatedLoan;
     }
 
