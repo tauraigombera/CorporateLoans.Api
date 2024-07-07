@@ -1,4 +1,3 @@
-using EmployeeLoans.Api;
 using EmployeeLoans.Api.Data;
 using EmployeeLoans.Api.Repositories;
 
@@ -9,7 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 // Registering the Loan repository for dependency injection
-builder.Services.AddSingleton<ILoanRepository, InMemoryLoanRepository>();
+// builder.Services.AddSingleton<ILoanRepository, InMemoryLoanRepository>(); //Use this if you want to use InMemory Database
+builder.Services.AddScoped<ILoanRepository, LoansRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
