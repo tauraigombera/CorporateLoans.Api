@@ -6,5 +6,5 @@ public record LoanDto
     decimal LoanAmount,
     string LoanPurpose,
     DateTime ApplicationDate,
-    decimal MonthlyDeduction
+    decimal MonthlyDeductionAmount
 );

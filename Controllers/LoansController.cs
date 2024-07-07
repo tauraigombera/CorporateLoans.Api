@@ -45,7 +45,7 @@ public class LoansController : ControllerBase
             Id = Guid.NewGuid(),
             LoanAmount = createLoanDto.LoanAmount,
             LoanPurpose = createLoanDto.LoanPurpose,
-            MonthlyDeductionAmount = createLoanDto.MonthlyDeduction,
+            MonthlyDeductionAmount = createLoanDto.MonthlyDeductionAmount,
             ApplicationDate = DateTime.Now
         };
 
