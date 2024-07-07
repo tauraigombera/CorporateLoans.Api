@@ -49,4 +49,16 @@ public class InMemoryLoanRepository : ILoanRepository
     {
         loans.Add(loan);
     }
+
+    public void UpdateLoan(Loan updatedLoan)
+    {
+        var index = loans.FindIndex(organization => organization.Id == updatedLoan.Id);
+        loans[index] = updatedLoan;
+    }
+
+    public void DeleteLoan(Guid id)
+    {
+        var index = loans.FindIndex(loan => loan.Id == id);
+        loans.RemoveAt(index);
+    }
 }
