@@ -4,5 +4,5 @@ public record UpdateLoanDto
 (
     decimal LoanAmount,
     string LoanPurpose,
-    decimal MonthlyDeduction
+    decimal MonthlyDeductionAmount
 );

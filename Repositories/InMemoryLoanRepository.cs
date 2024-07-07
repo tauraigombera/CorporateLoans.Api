@@ -50,10 +50,10 @@ public class InMemoryLoanRepository : ILoanRepository
         loans.Add(loan);
     }
 
-    public void UpdateLoan(Loan updatedLoan)
+    public void UpdateLoan(Loan Loan)
     {
-        var index = loans.FindIndex(loan => loan.Id == updatedLoan.Id);
-        loans[index] = updatedLoan;
+        var index = loans.FindIndex(loan => loan.Id == Loan.Id);
+        loans[index] = Loan;
     }
 
     public void DeleteLoan(Guid id)

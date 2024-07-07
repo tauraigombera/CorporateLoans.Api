@@ -53,9 +53,9 @@ public class LoansController : ControllerBase
         return CreatedAtAction(nameof(GetLoan), new{id = loan.Id}, loan.AsDto());
     }
 
-    //UPDATE /loans
-    [HttpPut]
-    public ActionResult<LoanDto> UpdateLoan(Guid id, UpdateLoanDto updateLoanDto)
+    //PUT /loans/{id}
+    [HttpPut("{id}")]
+    public ActionResult UpdateLoan(Guid id, UpdateLoanDto updateLoanDto)
     {
         Loan? existingLoan = _loanRepository.GetLoan(id);
 
@@ -63,18 +63,19 @@ public class LoansController : ControllerBase
         {
             existingLoan.LoanAmount = updateLoanDto.LoanAmount;
             existingLoan.LoanPurpose = updateLoanDto.LoanPurpose;
-            existingLoan.LoanPurpose = updateLoanDto.LoanPurpose;
+            existingLoan.MonthlyDeductionAmount = updateLoanDto.MonthlyDeductionAmount;
 
             _loanRepository.UpdateLoan(existingLoan);
 
             return NoContent();
         }
         
-        return NoContent();
+        return NotFound();
     }
 
-    //DELETE /organization
-    public ActionResult<LoanDto> DeleteLoan(Guid id)
+    //DELETE /organization/{id}
+    [HttpDelete("{id}")]
+    public ActionResult DeleteLoan(Guid id)
     {
         Loan? loan = _loanRepository.GetLoan(id);
         
