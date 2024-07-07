@@ -36,8 +36,7 @@ namespace EmployeeLoans.Api.Data.Migrations
 
                     b.Property<string>("LoanPurpose")
                         .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("MonthlyDeductionAmount")
                         .HasColumnType("decimal(18,2)");

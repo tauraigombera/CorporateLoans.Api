@@ -17,7 +17,7 @@ namespace EmployeeLoans.Api.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LoanAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    LoanPurpose = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    LoanPurpose = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ApplicationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     MonthlyDeductionAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
