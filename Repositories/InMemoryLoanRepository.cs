@@ -34,31 +34,36 @@ public class InMemoryLoanRepository : ILoanRepository
     ];
 
     //Get loans
-    public IEnumerable<Loan> GetLoans()
+    public async Task<IEnumerable<Loan>> GetLoansAsync()
     {
-        return loans;
+        return await Task.FromResult(loans);
     }
 
     //Get a loan by id
-    public Loan GetLoan(Guid id)
+    public async Task<Loan?> GetLoanAsync(Guid id)
     {
-        return loans.SingleOrDefault(loan => loan.Id == id)!;
+        return await Task.FromResult(loans.SingleOrDefault(loan => loan.Id == id));
     }
 
-    public void CreateLoan(Loan loan)
+    public async Task CreateLoanAsync(Loan loan)
     {
         loans.Add(loan);
+        await Task.CompletedTask;
     }
 
-    public void UpdateLoan(Loan Loan)
+    public async Task UpdateLoanAsync(Loan Loan)
     {
         var index = loans.FindIndex(loan => loan.Id == Loan.Id);
         loans[index] = Loan;
+
+        await Task.CompletedTask;
     }
 
-    public void DeleteLoan(Guid id)
+    public async Task DeleteLoanAsync(Guid id)
     {
         var index = loans.FindIndex(loan => loan.Id == id);
         loans.RemoveAt(index);
+
+        await Task.CompletedTask;
     }
 }
