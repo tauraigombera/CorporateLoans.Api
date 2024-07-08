@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace EmployeeLoans.Api.Controllers;
 
 [ApiController]
-[Route("loans")]
+[Route("api/[controller]")]
 public class LoansController : ControllerBase
 {
     private readonly ILoanRepository _loanRepository;
