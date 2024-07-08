@@ -13,29 +13,29 @@ public class LoansRepository : ILoanRepository
         this.dbContext = dbContext;
     }
 
-    public IEnumerable<Loan> GetLoans()
+    public async Task<IEnumerable<Loan>> GetLoansAsync()
     {
-        return dbContext.Loans.AsNoTracking().ToList();
+        return await dbContext.Loans.AsNoTracking().ToListAsync();
     }
 
-    public Loan? GetLoan(Guid id)
+    public async Task<Loan?> GetLoanAsync(Guid id)
     {
-        return dbContext.Loans.SingleOrDefault(loan => loan.Id == id);
+        return await dbContext.Loans.SingleOrDefaultAsync(loan => loan.Id == id);
     }
 
-    public void CreateLoan(Loan loan)
+    public async Task CreateLoanAsync(Loan loan)
     {
-        dbContext.Loans.Add(loan);
-        dbContext.SaveChanges();
+        await dbContext.Loans.AddAsync(loan);
+        await dbContext.SaveChangesAsync();
     }
 
-    public void UpdateLoan(Loan loan){
+    public async Task UpdateLoanAsync(Loan loan){
         dbContext.Update(loan);
-        dbContext.SaveChanges();
+        await dbContext.SaveChangesAsync();
     }
 
-    public void DeleteLoan(Guid id)
+    public async Task DeleteLoanAsync(Guid id)
     {
-        dbContext.Loans.Where(loan => loan.Id == id).ExecuteDelete();
+        await dbContext.Loans.Where(loan => loan.Id == id).ExecuteDeleteAsync();
     }
 }
