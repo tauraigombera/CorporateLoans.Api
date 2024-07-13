@@ -1,4 +1,4 @@
-﻿using EmployeeLoans.Api.Dtos;
+﻿using EmployeeLoans.Api.Dtos.LoanDtos;
 using EmployeeLoans.Api.Extensions;
 using EmployeeLoans.Api.Models;
 using EmployeeLoans.Api.Repositories;

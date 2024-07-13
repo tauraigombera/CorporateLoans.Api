@@ -1,4 +1,4 @@
-﻿namespace EmployeeLoans.Api.Dtos;
+﻿namespace EmployeeLoans.Api.Dtos.LoanDtos;
 
 public record UpdateLoanDto
 (
