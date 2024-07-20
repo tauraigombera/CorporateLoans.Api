@@ -5,14 +5,8 @@ namespace EmployeeLoans.Api.Repositories;
 public interface ILoanRepository
 {
     Task<IEnumerable<Loan>> GetLoansAsync();
-
     Task<Loan?> GetLoanAsync(Guid id);
-
     Task CreateLoanAsync(Loan loan);
-
     Task UpdateLoanAsync(Loan loan);
-
-    Task ApproveLoanAsync(Loan loan);
-
     Task DeleteLoanAsync(Guid id);
 }
