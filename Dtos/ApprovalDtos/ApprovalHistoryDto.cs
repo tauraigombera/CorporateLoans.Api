@@ -2,12 +2,12 @@
 
 namespace EmployeeLoans.Api.Dtos.ApprovalDtos;
 
-public record Approval
+public record ApprovalHistoryDto
 (
     Guid Id,
     Guid LoanId,
     string ApprovalOffice,
-    LoanStatus LoanStatus,
+    ApprovalStatus ApprovalStatus,
     string Comment,
     DateTime Date
 );
