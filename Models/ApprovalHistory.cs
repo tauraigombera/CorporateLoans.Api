@@ -9,5 +9,5 @@ public class ApprovalHistory
     public required string ApprovalOffice { get; set; }
     public ApprovalStatus ApprovalStatus { get; set; }
     public required string Comment { get; set; }
-    public DateTime Date { get; set; }
+    public DateTime ApprovalDate { get; set; }
 }
