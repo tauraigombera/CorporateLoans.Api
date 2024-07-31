@@ -1,4 +1,5 @@
-﻿using EmployeeLoans.Api.Dtos.LoanDtos;
+﻿using EmployeeLoans.Api.Dtos.ApprovalDtos;
+using EmployeeLoans.Api.Dtos.LoanDtos;
 using EmployeeLoans.Api.Extensions;
 using EmployeeLoans.Api.Models;
 using EmployeeLoans.Api.Repositories;
@@ -68,6 +69,31 @@ public class LoansController : ControllerBase
             await _loanRepository.UpdateLoanAsync(existingLoan);
 
             return NoContent();
+        }
+        
+        return NotFound();
+    }
+
+    //POST /loans {loanId}/approve
+    [HttpPost("{loanId}/approve")]
+    public async Task<ActionResult<LoanDto>> ApproveLoan(Guid loanId, CreateApprovalHistoryDto createApprovalHistoryDto)
+    {
+        Loan? existingLoan = await _loanRepository.GetLoanAsync(loanId);
+
+        if (existingLoan is not null){
+                ApprovalHistory approvalHistory = new(){
+                Id = Guid.NewGuid(),
+                LoanId = createApprovalHistoryDto.LoanId,
+                ApprovalOffice = createApprovalHistoryDto.ApprovalOffice,
+                ApprovalStatus = Enums.ApprovalStatus.Approved,
+                Comment = createApprovalHistoryDto.Comment,
+                ApprovalDate = DateTime.Now
+            };
+
+            existingLoan.LoanStatus = Enums.LoanStatus.Approved;
+
+            await _loanRepository.ApproveLoanAsync(approvalHistory);
+            //return CreatedAtAction(nameof(GetLoan), new{id = approvalHistory.Id}, approvalHistory.AsDto());
         }
         
         return NotFound();
