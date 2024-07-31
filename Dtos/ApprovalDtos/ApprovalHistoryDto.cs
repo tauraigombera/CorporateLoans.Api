@@ -9,5 +9,5 @@ public record ApprovalHistoryDto
     string ApprovalOffice,
     ApprovalStatus ApprovalStatus,
     string Comment,
-    DateTime Date
+    DateTime ApprovalDate
 );
