@@ -14,7 +14,7 @@ public static class ApprovalHistoryExtension
             approvalHistory.ApprovalOffice,
             approvalHistory.ApprovalStatus,
             approvalHistory.Comment,
-            approvalHistory.Date
+            approvalHistory.ApprovalDate
         );
     }
 }
