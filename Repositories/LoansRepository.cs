@@ -34,6 +34,12 @@ public class LoansRepository : ILoanRepository
         await dbContext.SaveChangesAsync();
     }
 
+    public async Task ApproveLoanAsync(ApprovalHistory approvalHistory)
+    {
+        await dbContext.ApprovalHistories.AddAsync(approvalHistory);
+        await dbContext.SaveChangesAsync();
+    }
+
     public async Task DeleteLoanAsync(Guid id)
     {
         await dbContext.Loans.Where(loan => loan.Id == id).ExecuteDeleteAsync();

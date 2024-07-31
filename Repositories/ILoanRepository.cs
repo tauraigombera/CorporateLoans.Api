@@ -8,5 +8,6 @@ public interface ILoanRepository
     Task<Loan?> GetLoanAsync(Guid id);
     Task CreateLoanAsync(Loan loan);
     Task UpdateLoanAsync(Loan loan);
+    Task ApproveLoanAsync(ApprovalHistory approvalHistory);
     Task DeleteLoanAsync(Guid id);
 }
