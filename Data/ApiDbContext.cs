@@ -9,7 +9,7 @@ public class ApiDbContext : DbContext
         : base(options)
     {   
     }
-    public DbSet<LoanApplication> Loans { get; set; }
+    public DbSet<LoanApplication> LoanApplications { get; set; }
     public DbSet<ApprovalHistory> ApprovalHistories { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

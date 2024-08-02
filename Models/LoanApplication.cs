@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using EmployeeLoans.Api.Enums;
 
 namespace EmployeeLoans.Api.Models;

@@ -3,7 +3,7 @@ using EmployeeLoans.Api.Models;
 
 namespace EmployeeLoans.Api.Extensions;
 
-public static class LoanExtension
+public static class LoanApplicationExtension
 {
     public static LoanApplicationDto AsDto(this LoanApplication loanApplication)
     {
