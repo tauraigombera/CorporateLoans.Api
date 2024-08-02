@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeLoans.Api.Repositories;
 
-public class LoansRepository : ILoanRepository
+public class LoansRepository : ILoanApplicationRepository
 {
     private readonly ApiDbContext dbContext;
 
@@ -13,24 +13,24 @@ public class LoansRepository : ILoanRepository
         this.dbContext = dbContext;
     }
 
-    public async Task<IEnumerable<Loan>> GetLoansAsync()
+    public async Task<IEnumerable<LoanApplication>> GetLoansAsync()
     {
         return await dbContext.Loans.AsNoTracking().ToListAsync();
     }
 
-    public async Task<Loan?> GetLoanAsync(Guid id)
+    public async Task<LoanApplication?> GetLoanAsync(Guid id)
     {
         return await dbContext.Loans.SingleOrDefaultAsync(loan => loan.Id == id);
     }
 
-    public async Task CreateLoanAsync(Loan loan)
+    public async Task CreateLoanAsync(LoanApplication loanApplication)
     {
-        await dbContext.Loans.AddAsync(loan);
+        await dbContext.Loans.AddAsync(loanApplication);
         await dbContext.SaveChangesAsync();
     }
 
-    public async Task UpdateLoanAsync(Loan loan){
-        dbContext.Update(loan);
+    public async Task UpdateLoanAsync(LoanApplication loanApplication){
+        dbContext.Update(loanApplication);
         await dbContext.SaveChangesAsync();
     }
 
