@@ -1,6 +1,6 @@
 ﻿namespace EmployeeLoans.Api.Dtos.LoanDtos;
 
-public record CreateLoanDto
+public record CreateLoanApplicationDto
 (
     decimal LoanAmount,
     string LoanPurpose,
