@@ -1,4 +1,5 @@
 ﻿using EmployeeLoans.Api.Dtos.ApprovalDtos;
+using EmployeeLoans.Api.Dtos.LoanApplicationDtos;
 using EmployeeLoans.Api.Dtos.LoanDtos;
 using EmployeeLoans.Api.Enums;
 using EmployeeLoans.Api.Extensions;
@@ -50,7 +51,7 @@ public class LoanApplicationsController : ControllerBase
             LoanAmount = createLoanDto.LoanAmount,
             LoanPurpose = createLoanDto.LoanPurpose,
             MonthlyDeductionAmount = createLoanDto.MonthlyDeductionAmount,
-            LoanApplicationStatus = LoanStatus.Pending, //Default value
+            LoanApplicationStatus = LoanApplicationStatus.Pending, //Default value
             ApplicationDate = DateTime.Now
         };
 
@@ -96,7 +97,7 @@ public class LoanApplicationsController : ControllerBase
             };
             
             await _loanApplicationRepository.ApproveLoanAsync(approvalHistory);
-            existingLoan.LoanApplicationStatus = LoanStatus.Approved;
+            existingLoan.LoanApplicationStatus = LoanApplicationStatus.Approved;
             await _loanApplicationRepository.UpdateLoanAsync(existingLoan);
 
             return Ok(existingLoan);

@@ -1,6 +1,6 @@
 ﻿namespace EmployeeLoans.Api.Enums;
 
-public enum LoanStatus
+public enum LoanApplicationStatus
 {
     Pending,
     Approved,

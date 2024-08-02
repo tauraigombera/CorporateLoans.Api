@@ -1,4 +1,5 @@
-﻿using EmployeeLoans.Api.Dtos.LoanDtos;
+﻿using EmployeeLoans.Api.Dtos.LoanApplicationDtos;
+using EmployeeLoans.Api.Dtos.LoanDtos;
 using EmployeeLoans.Api.Models;
 
 namespace EmployeeLoans.Api.Extensions;
