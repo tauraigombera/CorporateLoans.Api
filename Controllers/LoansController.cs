@@ -19,7 +19,7 @@ public class LoansController : ControllerBase
 
     //GET /loans
     [HttpGet]
-    public async Task<IEnumerable<LoanDto>> GetLoans()
+    public async Task<IEnumerable<LoanApplicationDto>> GetLoans()
     {
         var loans = (await _loanRepository.GetLoansAsync()).Select(loan => loan.AsDto());
         return loans;
@@ -27,7 +27,7 @@ public class LoansController : ControllerBase
 
     //GET /loans/{id}
     [HttpGet("{id}")]
-    public async Task<ActionResult<LoanDto>> GetLoan(Guid id)
+    public async Task<ActionResult<LoanApplicationDto>> GetLoan(Guid id)
     {
         var loan = await _loanRepository.GetLoanAsync(id);
 
@@ -39,9 +39,9 @@ public class LoansController : ControllerBase
 
     //POST /loans
     [HttpPost]
-    public async Task<ActionResult<LoanDto>> CreateLoans(CreateLoanDto createLoanDto)
+    public async Task<ActionResult<LoanApplicationDto>> CreateLoans(CreateLoanApplicationDto createLoanDto)
     {
-        Loan loan = new(){
+        LoanApplication loan = new(){
             Id = Guid.NewGuid(),
             LoanAmount = createLoanDto.LoanAmount,
             LoanPurpose = createLoanDto.LoanPurpose,
@@ -55,9 +55,9 @@ public class LoansController : ControllerBase
 
     //PUT /loans/{id}
     [HttpPut("{id}")]
-    public async Task<ActionResult> UpdateLoan(Guid id, UpdateLoanDto updateLoanDto)
+    public async Task<ActionResult> UpdateLoan(Guid id, UpdateLoanApplicationDto updateLoanDto)
     {
-        Loan? existingLoan = await _loanRepository.GetLoanAsync(id);
+        LoanApplication? existingLoan = await _loanRepository.GetLoanAsync(id);
 
         if (existingLoan is not null)
         {
@@ -77,7 +77,7 @@ public class LoansController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteLoan(Guid id)
     {
-        Loan? loan = await _loanRepository.GetLoanAsync(id);
+        LoanApplication? loan = await _loanRepository.GetLoanAsync(id);
         
         if (loan is not null)
         {
