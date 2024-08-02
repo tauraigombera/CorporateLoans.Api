@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace EmployeeLoans.Api.Models;
+﻿namespace EmployeeLoans.Api.Models;
 
 public class LoanApplication
 {
