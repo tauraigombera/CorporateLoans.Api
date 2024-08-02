@@ -15,17 +15,17 @@ public class LoanApplicationRepository : ILoanApplicationRepository
 
     public async Task<IEnumerable<LoanApplication>> GetLoansAsync()
     {
-        return await dbContext.Loans.AsNoTracking().ToListAsync();
+        return await dbContext.LoanApplications.AsNoTracking().ToListAsync();
     }
 
     public async Task<LoanApplication?> GetLoanAsync(Guid id)
     {
-        return await dbContext.Loans.SingleOrDefaultAsync(loan => loan.Id == id);
+        return await dbContext.LoanApplications.SingleOrDefaultAsync(loan => loan.Id == id);
     }
 
     public async Task CreateLoanAsync(LoanApplication loanApplication)
     {
-        await dbContext.Loans.AddAsync(loanApplication);
+        await dbContext.LoanApplications.AddAsync(loanApplication);
         await dbContext.SaveChangesAsync();
     }
 
@@ -42,6 +42,6 @@ public class LoanApplicationRepository : ILoanApplicationRepository
 
     public async Task DeleteLoanAsync(Guid id)
     {
-        await dbContext.Loans.Where(loan => loan.Id == id).ExecuteDeleteAsync();
+        await dbContext.LoanApplications.Where(loan => loan.Id == id).ExecuteDeleteAsync();
     }
 }
