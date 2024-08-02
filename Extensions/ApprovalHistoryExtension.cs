@@ -10,7 +10,7 @@ public static class ApprovalHistoryExtension
         return new ApprovalHistoryDto
         (
             approvalHistory.Id,
-            approvalHistory.LoanId,
+            approvalHistory.LoanApplicationId,
             approvalHistory.ApprovalOffice,
             approvalHistory.ApprovalStatus,
             approvalHistory.Comment,

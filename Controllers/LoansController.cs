@@ -89,7 +89,7 @@ public class LoansController : ControllerBase
         if (existingLoan is not null){
                 ApprovalHistory approvalHistory = new(){
                 Id = Guid.NewGuid(),
-                LoanId = existingLoan.Id,
+                LoanApplicationId = existingLoan.Id,
                 ApprovalOffice = createApprovalHistoryDto.ApprovalOffice,
                 Comment = createApprovalHistoryDto.Comment,
                 ApprovalDate = DateTime.Now
