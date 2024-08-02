@@ -1,5 +1,6 @@
 ﻿using EmployeeLoans.Api.Dtos.ApprovalDtos;
 using EmployeeLoans.Api.Dtos.LoanDtos;
+using EmployeeLoans.Api.Enums;
 using EmployeeLoans.Api.Extensions;
 using EmployeeLoans.Api.Models;
 using EmployeeLoans.Api.Repositories;
@@ -47,6 +48,7 @@ public class LoansController : ControllerBase
             LoanAmount = createLoanDto.LoanAmount,
             LoanPurpose = createLoanDto.LoanPurpose,
             MonthlyDeductionAmount = createLoanDto.MonthlyDeductionAmount,
+            LoanStatus = LoanStatus.Pending, //Default value
             ApplicationDate = DateTime.Now
         };
 
