@@ -13,7 +13,8 @@ public static class LoanExtension
             loan.LoanAmount,
             loan.LoanPurpose,
             loan.ApplicationDate,
-            loan.MonthlyDeductionAmount
+            loan.MonthlyDeductionAmount,
+            loan.LoanStatus
         );
     }
 }
