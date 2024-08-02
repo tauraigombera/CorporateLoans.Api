@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeLoans.Api.Repositories;
 
-public class LoansRepository : ILoanApplicationRepository
+public class LoanApplicationRepository : ILoanApplicationRepository
 {
     private readonly ApiDbContext dbContext;
 
-    public LoansRepository(ApiDbContext dbContext)
+    public LoanApplicationRepository(ApiDbContext dbContext)
     {
         this.dbContext = dbContext;
     }

@@ -9,7 +9,7 @@ builder.Services.AddControllers();
 
 // Registering the Loan repository for dependency injection
 // builder.Services.AddSingleton<ILoanRepository, InMemoryLoanRepository>(); //Use this if you want to use InMemory Database
-builder.Services.AddScoped<ILoanRepository, LoansRepository>();
+builder.Services.AddScoped<ILoanApplicationRepository, LoanApplicationRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
