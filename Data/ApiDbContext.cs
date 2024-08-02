@@ -9,14 +9,14 @@ public class ApiDbContext : DbContext
         : base(options)
     {   
     }
-    public DbSet<Loan> Loans { get; set; }
+    public DbSet<LoanApplication> Loans { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Loan>()
+        modelBuilder.Entity<LoanApplication>()
             .Property(l => l.LoanAmount)
             .HasColumnType("decimal(18,2)"); // Adjust precision and scale as per your requirements
 
-            modelBuilder.Entity<Loan>()
+            modelBuilder.Entity<LoanApplication>()
             .Property(l => l.MonthlyDeductionAmount)
             .HasColumnType("decimal(18,2)"); // Adjust precision and scale as per your requirements
     }
