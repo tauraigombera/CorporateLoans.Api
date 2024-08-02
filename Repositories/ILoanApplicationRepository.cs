@@ -2,7 +2,7 @@
 
 namespace EmployeeLoans.Api.Repositories;
 
-public interface ILoanRepository
+public interface ILoanApplicationRepository
 {
     Task<IEnumerable<LoanApplication>> GetLoansAsync();
 
