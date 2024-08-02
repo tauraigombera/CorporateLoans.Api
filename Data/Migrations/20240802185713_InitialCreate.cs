@@ -6,17 +6,33 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EmployeeLoans.Api.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class ApprovalHistory : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "LoanApplications",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LoanAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    LoanPurpose = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ApplicationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    MonthlyDeductionAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    LoanApplicationStatus = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LoanApplications", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ApprovalHistories",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LoanId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LoanApplicationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ApprovalOffice = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ApprovalStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -26,17 +42,17 @@ namespace EmployeeLoans.Api.Data.Migrations
                 {
                     table.PrimaryKey("PK_ApprovalHistories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ApprovalHistories_Loans_LoanId",
-                        column: x => x.LoanId,
-                        principalTable: "Loans",
+                        name: "FK_ApprovalHistories_LoanApplications_LoanApplicationId",
+                        column: x => x.LoanApplicationId,
+                        principalTable: "LoanApplications",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ApprovalHistories_LoanId",
+                name: "IX_ApprovalHistories_LoanApplicationId",
                 table: "ApprovalHistories",
-                column: "LoanId");
+                column: "LoanApplicationId");
         }
 
         /// <inheritdoc />
@@ -44,6 +60,9 @@ namespace EmployeeLoans.Api.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "ApprovalHistories");
+
+            migrationBuilder.DropTable(
+                name: "LoanApplications");
         }
     }
 }

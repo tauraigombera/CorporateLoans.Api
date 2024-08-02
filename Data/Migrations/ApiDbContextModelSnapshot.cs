@@ -4,7 +4,6 @@ using EmployeeLoans.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -12,11 +11,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeLoans.Api.Data.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20240802102317_ApprovalHistory")]
-    partial class ApprovalHistory
+    partial class ApiDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,17 +43,17 @@ namespace EmployeeLoans.Api.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("LoanId")
+                    b.Property<Guid>("LoanApplicationId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LoanId");
+                    b.HasIndex("LoanApplicationId");
 
                     b.ToTable("ApprovalHistories");
                 });
 
-            modelBuilder.Entity("EmployeeLoans.Api.Models.Loan", b =>
+            modelBuilder.Entity("EmployeeLoans.Api.Models.LoanApplication", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -68,11 +65,11 @@ namespace EmployeeLoans.Api.Data.Migrations
                     b.Property<decimal>("LoanAmount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("LoanPurpose")
+                    b.Property<string>("LoanApplicationStatus")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LoanStatus")
+                    b.Property<string>("LoanPurpose")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -81,21 +78,21 @@ namespace EmployeeLoans.Api.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Loans");
+                    b.ToTable("LoanApplications");
                 });
 
             modelBuilder.Entity("EmployeeLoans.Api.Models.ApprovalHistory", b =>
                 {
-                    b.HasOne("EmployeeLoans.Api.Models.Loan", "Loan")
+                    b.HasOne("EmployeeLoans.Api.Models.LoanApplication", "LoanApplication")
                         .WithMany("ApprovalHistories")
-                        .HasForeignKey("LoanId")
+                        .HasForeignKey("LoanApplicationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Loan");
+                    b.Navigation("LoanApplication");
                 });
 
-            modelBuilder.Entity("EmployeeLoans.Api.Models.Loan", b =>
+            modelBuilder.Entity("EmployeeLoans.Api.Models.LoanApplication", b =>
                 {
                     b.Navigation("ApprovalHistories");
                 });
