@@ -21,7 +21,7 @@ public class LoanApplicationsController : ControllerBase
 
     //GET /loans
     [HttpGet]
-    public async Task<IEnumerable<LoanApplicationDto>> GetLoans()
+    public async Task<IEnumerable<LoanApplicationDto>> GetLoanApplications()
     {
         var loans = (await _loanApplicationRepository.GetLoansAsync())
                 .OrderBy(loan => loan.ApplicationDate)
@@ -31,7 +31,7 @@ public class LoanApplicationsController : ControllerBase
 
     //GET /loans/{id}
     [HttpGet("{id}")]
-    public async Task<ActionResult<LoanApplicationDto>> GetLoan(Guid id)
+    public async Task<ActionResult<LoanApplicationDto>> GetLoanApplication(Guid id)
     {
         var loan = await _loanApplicationRepository.GetLoanAsync(id);
 
@@ -43,7 +43,7 @@ public class LoanApplicationsController : ControllerBase
 
     //POST /loans
     [HttpPost]
-    public async Task<ActionResult<LoanApplicationDto>> CreateLoans(CreateLoanApplicationDto createLoanDto)
+    public async Task<ActionResult<LoanApplicationDto>> CreateLoanApplication(CreateLoanApplicationDto createLoanDto)
     {
         LoanApplication loan = new(){
             Id = Guid.NewGuid(),
@@ -55,12 +55,12 @@ public class LoanApplicationsController : ControllerBase
         };
 
         await _loanApplicationRepository.CreateLoanAsync(loan);
-        return CreatedAtAction(nameof(GetLoan), new{id = loan.Id}, loan.AsDto());
+        return CreatedAtAction(nameof(GetLoanApplication), new{id = loan.Id}, loan.AsDto());
     }
 
     //PUT /loans/{id}
     [HttpPut("{id}")]
-    public async Task<ActionResult> UpdateLoan(Guid id, UpdateLoanApplicationDto updateLoanDto)
+    public async Task<ActionResult> UpdateLoanApplication(Guid id, UpdateLoanApplicationDto updateLoanDto)
     {
         LoanApplication? existingLoan = await _loanApplicationRepository.GetLoanAsync(id);
 
@@ -82,7 +82,7 @@ public class LoanApplicationsController : ControllerBase
  
     //POST /loans {loanId}/approve
     [HttpPost("{loanId}/approve")]
-    public async Task<ActionResult<LoanApplicationDto>> ApproveLoan(Guid loanId, CreateApprovalHistoryDto createApprovalHistoryDto)
+    public async Task<ActionResult<LoanApplicationDto>> ApproveLoanApplication(Guid loanId, CreateApprovalHistoryDto createApprovalHistoryDto)
     {
         LoanApplication? existingLoan = await _loanApplicationRepository.GetLoanAsync(loanId);
 
@@ -107,7 +107,7 @@ public class LoanApplicationsController : ControllerBase
 
     //DELETE /organization/{id}
     [HttpDelete("{id}")]
-    public async Task<ActionResult> DeleteLoan(Guid id)
+    public async Task<ActionResult> DeleteLoanApplication(Guid id)
     {
         LoanApplication? loan = await _loanApplicationRepository.GetLoanAsync(id);
         
