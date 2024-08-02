@@ -78,6 +78,8 @@ public class LoansController : ControllerBase
         return NotFound();
     }
 
+
+ 
     //POST /loans {loanId}/approve
     [HttpPost("{loanId}/approve")]
     public async Task<ActionResult<LoanDto>> ApproveLoan(Guid loanId, CreateApprovalHistoryDto createApprovalHistoryDto)
@@ -87,17 +89,17 @@ public class LoansController : ControllerBase
         if (existingLoan is not null){
                 ApprovalHistory approvalHistory = new(){
                 Id = Guid.NewGuid(),
-                LoanId = createApprovalHistoryDto.LoanId,
+                LoanId = existingLoan.Id,
                 ApprovalOffice = createApprovalHistoryDto.ApprovalOffice,
-                ApprovalStatus = ApprovalStatus.Approved,
                 Comment = createApprovalHistoryDto.Comment,
                 ApprovalDate = DateTime.Now
             };
-
-            existingLoan.LoanStatus = LoanStatus.Approved;
-
+            
             await _loanRepository.ApproveLoanAsync(approvalHistory);
-            //return CreatedAtAction(nameof(GetLoan), new{id = approvalHistory.Id}, approvalHistory.AsDto());
+            existingLoan.LoanStatus = LoanStatus.Approved;
+            await _loanRepository.UpdateLoanAsync(existingLoan);
+
+            return Ok(existingLoan);
         }
         
         return NotFound();
