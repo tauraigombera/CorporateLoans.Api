@@ -10,4 +10,5 @@ public class ApprovalHistory
     public ApprovalStatus ApprovalStatus { get; set; }
     public required string Comment { get; set; }
     public DateTime ApprovalDate { get; set; }
+    public Loan Loan { get; set; } = null!;
 }
