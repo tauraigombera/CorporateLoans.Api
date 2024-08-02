@@ -10,9 +10,9 @@ namespace EmployeeLoans.Api.Controllers;
 [Route("api/[controller]")]
 public class LoansController : ControllerBase
 {
-    private readonly ILoanRepository _loanRepository;
+    private readonly ILoanApplicationRepository _loanRepository;
 
-    public LoansController(ILoanRepository loanRepository)
+    public LoansController(ILoanApplicationRepository loanRepository)
     {
         _loanRepository = loanRepository;
     }
