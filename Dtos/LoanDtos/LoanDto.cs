@@ -1,4 +1,6 @@
-﻿namespace EmployeeLoans.Api.Dtos.LoanDtos;
+﻿using EmployeeLoans.Api.Enums;
+
+namespace EmployeeLoans.Api.Dtos.LoanDtos;
 
 public record LoanDto
 (
@@ -6,5 +8,6 @@ public record LoanDto
     decimal LoanAmount,
     string LoanPurpose,
     DateTime ApplicationDate,
-    decimal MonthlyDeductionAmount
+    decimal MonthlyDeductionAmount,
+    LoanStatus LoanStatus
 );
