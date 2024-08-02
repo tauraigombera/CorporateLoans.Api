@@ -8,7 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers()
 .AddJsonOptions(options =>
-        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
+
+        
 
 // Registering the Loan repository for dependency injection
 // builder.Services.AddSingleton<ILoanRepository, InMemoryLoanRepository>(); //Use this if you want to use InMemory Database
