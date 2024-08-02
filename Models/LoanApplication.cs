@@ -2,7 +2,7 @@
 
 namespace EmployeeLoans.Api.Models;
 
-public class Loan
+public class LoanApplication
 {
     public Guid Id { get; set; }
     public decimal LoanAmount { get; set; }
