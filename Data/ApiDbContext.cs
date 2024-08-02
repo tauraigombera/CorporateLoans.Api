@@ -13,12 +13,20 @@ public class ApiDbContext : DbContext
     public DbSet<ApprovalHistory> ApprovalHistories { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Loan>()
+        modelBuilder.Entity<LoanApplication>()
             .Property(l => l.LoanAmount)
             .HasColumnType("decimal(18,2)"); // Adjust precision and scale as per your requirements
 
         modelBuilder.Entity<LoanApplication>()
             .Property(l => l.MonthlyDeductionAmount)
             .HasColumnType("decimal(18,2)"); // Adjust precision and scale as per your requirements
+
+        modelBuilder.Entity<LoanApplication>()
+            .Property(l => l.LoanStatus)
+            .HasConversion<string>(); // Store enum as strings
+
+        modelBuilder.Entity<ApprovalHistory>()
+            .Property(ah => ah.ApprovalStatus)
+            .HasConversion<string>(); // Store enum as strings
     }
 }

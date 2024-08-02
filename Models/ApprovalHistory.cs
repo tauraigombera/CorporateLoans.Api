@@ -12,5 +12,5 @@ public class ApprovalHistory
     public required string Comment { get; set; }
     public DateTime ApprovalDate { get; set; }
     [JsonIgnore]
-    public Loan Loan { get; set; } = null!;
+    public LoanApplication LoanApplication { get; set; } = null!;
 }

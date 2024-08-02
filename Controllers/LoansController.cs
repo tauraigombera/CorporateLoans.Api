@@ -82,9 +82,9 @@ public class LoansController : ControllerBase
  
     //POST /loans {loanId}/approve
     [HttpPost("{loanId}/approve")]
-    public async Task<ActionResult<LoanDto>> ApproveLoan(Guid loanId, CreateApprovalHistoryDto createApprovalHistoryDto)
+    public async Task<ActionResult<LoanApplicationDto>> ApproveLoan(Guid loanId, CreateApprovalHistoryDto createApprovalHistoryDto)
     {
-        Loan? existingLoan = await _loanRepository.GetLoanAsync(loanId);
+        LoanApplication? existingLoan = await _loanRepository.GetLoanAsync(loanId);
 
         if (existingLoan is not null){
                 ApprovalHistory approvalHistory = new(){
