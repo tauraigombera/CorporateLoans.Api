@@ -9,6 +9,6 @@ public class LoanApplication
     public required string LoanPurpose { get; set; }
     public DateTime ApplicationDate { get; set; }
     public decimal MonthlyDeductionAmount { get; set; }
-    public LoanStatus LoanStatus { get; set; }
+    public LoanStatus LoanApplicationStatus { get; set; }
     public List<ApprovalHistory>? ApprovalHistories { get; set; }
 }

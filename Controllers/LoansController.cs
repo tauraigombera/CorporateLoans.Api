@@ -50,7 +50,7 @@ public class LoansController : ControllerBase
             LoanAmount = createLoanDto.LoanAmount,
             LoanPurpose = createLoanDto.LoanPurpose,
             MonthlyDeductionAmount = createLoanDto.MonthlyDeductionAmount,
-            LoanStatus = LoanStatus.Pending, //Default value
+            LoanApplicationStatus = LoanStatus.Pending, //Default value
             ApplicationDate = DateTime.Now
         };
 
@@ -96,7 +96,7 @@ public class LoansController : ControllerBase
             };
             
             await _loanRepository.ApproveLoanAsync(approvalHistory);
-            existingLoan.LoanStatus = LoanStatus.Approved;
+            existingLoan.LoanApplicationStatus = LoanStatus.Approved;
             await _loanRepository.UpdateLoanAsync(existingLoan);
 
             return Ok(existingLoan);

@@ -22,7 +22,7 @@ public class ApiDbContext : DbContext
             .HasColumnType("decimal(18,2)"); // Adjust precision and scale as per your requirements
 
         modelBuilder.Entity<LoanApplication>()
-            .Property(l => l.LoanStatus)
+            .Property(l => l.LoanApplicationStatus)
             .HasConversion<string>(); // Store enum as strings
 
         modelBuilder.Entity<ApprovalHistory>()
