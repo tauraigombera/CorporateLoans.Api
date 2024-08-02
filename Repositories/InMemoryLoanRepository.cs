@@ -2,12 +2,12 @@
 
 namespace EmployeeLoans.Api.Repositories;
 
-public class InMemoryLoanRepository : ILoanRepository
+public class InMemoryLoanRepository : ILoanApplicationRepository
 {
     //Create a list of loans
-    private readonly List<Loan> loans =
+    private readonly List<LoanApplication> loans =
     [
-        new Loan 
+        new LoanApplication
         {
             Id = Guid.NewGuid(),
             LoanAmount = 1000000,
@@ -15,7 +15,7 @@ public class InMemoryLoanRepository : ILoanRepository
             ApplicationDate = DateTime.Now,
             MonthlyDeductionAmount = 100000
         },
-        new Loan 
+        new LoanApplication
         {
             Id = Guid.NewGuid(),
             LoanAmount = 2000000,
@@ -23,7 +23,7 @@ public class InMemoryLoanRepository : ILoanRepository
             ApplicationDate = DateTime.Now,
             MonthlyDeductionAmount = 200000
         },
-        new Loan 
+        new LoanApplication 
         {
             Id = Guid.NewGuid(),
             LoanAmount = 3000000,
@@ -34,24 +34,24 @@ public class InMemoryLoanRepository : ILoanRepository
     ];
 
     //Get loans
-    public async Task<IEnumerable<Loan>> GetLoansAsync()
+    public async Task<IEnumerable<LoanApplication>> GetLoansAsync()
     {
         return await Task.FromResult(loans);
     }
 
     //Get a loan by id
-    public async Task<Loan?> GetLoanAsync(Guid id)
+    public async Task<LoanApplication?> GetLoanAsync(Guid id)
     {
         return await Task.FromResult(loans.SingleOrDefault(loan => loan.Id == id));
     }
 
-    public async Task CreateLoanAsync(Loan loan)
+    public async Task CreateLoanAsync(LoanApplication loanApplication)
     {
-        loans.Add(loan);
+        loans.Add(loanApplication);
         await Task.CompletedTask;
     }
 
-    public async Task UpdateLoanAsync(Loan Loan)
+    public async Task UpdateLoanAsync(LoanApplication Loan)
     {
         var index = loans.FindIndex(loan => loan.Id == Loan.Id);
         loans[index] = Loan;
