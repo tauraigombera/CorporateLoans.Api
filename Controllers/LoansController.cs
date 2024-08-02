@@ -89,7 +89,7 @@ public class LoansController : ControllerBase
                 Id = Guid.NewGuid(),
                 LoanId = createApprovalHistoryDto.LoanId,
                 ApprovalOffice = createApprovalHistoryDto.ApprovalOffice,
-                ApprovalStatus = Enums.ApprovalStatus.Approved,
+                ApprovalStatus = ApprovalStatus.Approved,
                 Comment = createApprovalHistoryDto.Comment,
                 ApprovalDate = DateTime.Now
             };
