@@ -35,8 +35,9 @@ namespace EmployeeLoans.Api.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ApprovalStatus")
-                        .HasColumnType("int");
+                    b.Property<string>("ApprovalStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Comment")
                         .IsRequired()
@@ -49,7 +50,7 @@ namespace EmployeeLoans.Api.Data.Migrations
 
                     b.HasIndex("LoanId");
 
-                    b.ToTable("ApprovalHistory");
+                    b.ToTable("ApprovalHistories");
                 });
 
             modelBuilder.Entity("EmployeeLoans.Api.Models.Loan", b =>
@@ -82,11 +83,13 @@ namespace EmployeeLoans.Api.Data.Migrations
 
             modelBuilder.Entity("EmployeeLoans.Api.Models.ApprovalHistory", b =>
                 {
-                    b.HasOne("EmployeeLoans.Api.Models.Loan", null)
+                    b.HasOne("EmployeeLoans.Api.Models.Loan", "Loan")
                         .WithMany("ApprovalHistories")
                         .HasForeignKey("LoanId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Loan");
                 });
 
             modelBuilder.Entity("EmployeeLoans.Api.Models.Loan", b =>
