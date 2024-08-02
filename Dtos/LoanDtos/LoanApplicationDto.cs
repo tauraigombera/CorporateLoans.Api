@@ -1,6 +1,6 @@
 ﻿namespace EmployeeLoans.Api.Dtos.LoanDtos;
 
-public record LoanDto
+public record LoanApplicationDto
 (
     Guid Id,
     decimal LoanAmount,
