@@ -23,7 +23,9 @@ public class LoansController : ControllerBase
     [HttpGet]
     public async Task<IEnumerable<LoanDto>> GetLoans()
     {
-        var loans = (await _loanRepository.GetLoansAsync()).Select(loan => loan.AsDto());
+        var loans = (await _loanRepository.GetLoansAsync())
+                .OrderBy(loan => loan.ApplicationDate)
+                .Select(loan => loan.AsDto());
         return loans;
     }
 
