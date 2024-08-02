@@ -1,4 +1,6 @@
-﻿using EmployeeLoans.Api.Dtos.LoanDtos;
+﻿using EmployeeLoans.Api.Dtos.ApprovalDtos;
+using EmployeeLoans.Api.Dtos.LoanDtos;
+using EmployeeLoans.Api.Enums;
 using EmployeeLoans.Api.Extensions;
 using EmployeeLoans.Api.Models;
 using EmployeeLoans.Api.Repositories;
@@ -21,7 +23,9 @@ public class LoansController : ControllerBase
     [HttpGet]
     public async Task<IEnumerable<LoanApplicationDto>> GetLoans()
     {
-        var loans = (await _loanRepository.GetLoansAsync()).Select(loan => loan.AsDto());
+        var loans = (await _loanRepository.GetLoansAsync())
+                .OrderBy(loan => loan.ApplicationDate)
+                .Select(loan => loan.AsDto());
         return loans;
     }
 
@@ -46,6 +50,7 @@ public class LoansController : ControllerBase
             LoanAmount = createLoanDto.LoanAmount,
             LoanPurpose = createLoanDto.LoanPurpose,
             MonthlyDeductionAmount = createLoanDto.MonthlyDeductionAmount,
+            LoanStatus = LoanStatus.Pending, //Default value
             ApplicationDate = DateTime.Now
         };
 
@@ -68,6 +73,33 @@ public class LoansController : ControllerBase
             await _loanRepository.UpdateLoanAsync(existingLoan);
 
             return NoContent();
+        }
+        
+        return NotFound();
+    }
+
+
+ 
+    //POST /loans {loanId}/approve
+    [HttpPost("{loanId}/approve")]
+    public async Task<ActionResult<LoanDto>> ApproveLoan(Guid loanId, CreateApprovalHistoryDto createApprovalHistoryDto)
+    {
+        Loan? existingLoan = await _loanRepository.GetLoanAsync(loanId);
+
+        if (existingLoan is not null){
+                ApprovalHistory approvalHistory = new(){
+                Id = Guid.NewGuid(),
+                LoanId = existingLoan.Id,
+                ApprovalOffice = createApprovalHistoryDto.ApprovalOffice,
+                Comment = createApprovalHistoryDto.Comment,
+                ApprovalDate = DateTime.Now
+            };
+            
+            await _loanRepository.ApproveLoanAsync(approvalHistory);
+            existingLoan.LoanStatus = LoanStatus.Approved;
+            await _loanRepository.UpdateLoanAsync(existingLoan);
+
+            return Ok(existingLoan);
         }
         
         return NotFound();

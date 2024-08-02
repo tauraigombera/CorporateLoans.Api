@@ -1,4 +1,7 @@
-﻿namespace EmployeeLoans.Api.Models;
+using System.ComponentModel.DataAnnotations;
+using EmployeeLoans.Api.Enums;
+
+namespace EmployeeLoans.Api.Models;
 
 public class LoanApplication
 {
@@ -7,4 +10,6 @@ public class LoanApplication
     public required string LoanPurpose { get; set; }
     public DateTime ApplicationDate { get; set; }
     public decimal MonthlyDeductionAmount { get; set; }
+    public LoanStatus LoanStatus { get; set; }
+    public List<ApprovalHistory>? ApprovalHistories { get; set; }
 }
