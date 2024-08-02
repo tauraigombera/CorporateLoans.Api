@@ -94,7 +94,7 @@ public class LoansController : ControllerBase
                 ApprovalDate = DateTime.Now
             };
 
-            existingLoan.LoanStatus = Enums.LoanStatus.Approved;
+            existingLoan.LoanStatus = LoanStatus.Approved;
 
             await _loanRepository.ApproveLoanAsync(approvalHistory);
             //return CreatedAtAction(nameof(GetLoan), new{id = approvalHistory.Id}, approvalHistory.AsDto());
