@@ -23,7 +23,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //configure SQL server connection
-var connectionString = builder.Configuration["ConnectionStrings:EmployeeLoansContext"];
+var connectionString = builder.Configuration["ConnectionStrings:CorporateLoansContext"];
 builder.Services.AddSqlServer<ApiDbContext>(connectionString);
 
 var app = builder.Build();
